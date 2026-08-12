@@ -1,0 +1,207 @@
+include "common.fbs";
+
+namespace Vehicle;
+//车辆上报数据
+//Can 报文,基础数据
+struct Can {
+    timestamps:uint64(id:0);    //毫秒级时间戳
+    canid:uint32(id:1);
+    data:[ubyte:8](id:2);
+}
+
+//车身上报CAN数据,通讯消息(上报驾驶舱+平台)
+table ReportCan {
+    canRaw:[Can](id:0);
+}
+
+//车辆位置信息
+table GpsImuInfo{
+    gps_rtk_status:int(id: 0);    //差分状态
+    gps_lat:double(id: 1);        //纬度 原MsgGnssBroadcastData -> latitude
+    gps_lng:double(id: 2);        //经度 原MsgGnssBroadcastData -> longitude
+    gps_heading:float(id: 3);     //航向角 原MsgGnssBroadcastData -> heading
+    gps_ve:float = 500(id: 4);    //东向速度
+    gps_vn:float = 500(id: 5);    //北向速度
+    gps_speed:float(id: 6);       //合速度 km/h
+    gps_height:float(id: 7);      //海拔 原MsgGnssBroadcastData -> height
+    imu_acc_y:float(id: 8);       //纵向加速度 原MsgGnssBroadcastData -> accY
+    imu_acc_x:float(id: 9);       //侧向加速度 原MsgGnssBroadcastData -> accX
+    imu_yaw_z:float(id: 10);      //横摆角速度 原MsgGnssBroadcastData -> accZ
+    gps_satellite_front:int(id: 11);     //前天线卫星数
+    gps_satellite_rear:int(id: 12);      //后天线卫星
+    gps_yaw:float(id: 13);          //偏航
+    gps_roll:float(id: 14);         //横滚
+    gps_pitch:float(id: 15);        //俯仰
+    gps_diff_flag:int(id: 16);      //丢差分情况 1:超过30s没有差分数据 10:纬度的标准差大于0.15 100:经度的标准差大于0.15
+    gnss_horizontal_speed:float(id: 17);//BESTVELA输出的水平速度,单位m/s 原MsgGnssBroadcastData -> speed
+    gps_utc_time:ulong(id: 18);//gps数据发布出来以系统时间基准的时间戳
+
+    flag:ubyte = 3(id:19);       //原MsgGnssBroadcastData -> flag 移动到此
+    speedEast:float(id:20);     //原MsgGnssBroadcastData -> speedEast 移动到此 取solution.velE
+    speedNorth:float(id:21);    //原MsgGnssBroadcastData -> speedNorth 移动到此取 solution.velN
+    maxSpeed:float(id:22);  //原MsgGnssBroadcastData -> maxSpeed 0
+    wheelAngle:float(id:23); //原MsgGnssBroadcastData -> wheelAngle 0
+}
+
+//车身上报HMI数据,通讯消息(上报驾驶舱)
+table ReportGpsInfo {
+    gpsInfo:GpsImuInfo (id:0);
+}
+
+//车身上报HMI数据,通讯消息(上报驾驶舱)
+table ReportHmi {
+    hmiMsg:[ubyte] (id:0);
+}
+
+//车端响应驾驶舱接管命令
+table ResponCtrlCmd {
+    cmd:RcdControlCmd  (id:0);                      //接管命令.
+    result:RcdControlCmdResult (id :1);             //接管命令执行结果
+}
+
+//车端向驾驶舱请求认证
+table ReqRcdAuth {
+    authCode:string (id:0);             //平台下发的鉴权码
+    imei:string (id:1);                 //车辆IMEI
+    taskId:ushort(id:2);                //接管任务编号
+}
+
+table VehicleBodysStatus {
+    vehicleType:byte;
+    throttlePedal:float;      //实际踩踏板百分比 0~100
+    brakePedal:float;         //电制动踏板位置百分比 0~100
+    hydraulicBrake:float;     //机械制动踏板反馈百分比 0~100
+    steeringWheelAngle:float;    //方向盘当前转角 -540~540
+    engineSpeed:float;      //1rpm 发送机转速
+    speed:float;       //km/h 车速
+    batteryLevel:float; //电池电量 0-100%
+    cellTemperature:float; //电芯温度
+    fuelLevel:float; //油量 0-100%
+    engineOilPressure:float; //发动机油压 0~1000kP
+    engineCoolantTemperature:float; //发动机冷却液温度
+    coolantLevel:float; //冷却液液位
+    exhaustPortEmperature:float;   //排气口温度
+    temperature:float;   //温度
+    waterTankLevel:float;      //水箱水位
+    frontAxleBrakePressure:float;  //前桥制动压力
+    rearAxleBrakePressure:float;   //后桥制动压力
+    gear:byte;   //挡位 -1 R, 0 N, 1 D
+    mode:ubyte; // 车辆驾驶状态 0x00手动/0x01自动
+    bucketCtrl:ubyte; //举升 0x00/0x01/0x02/0x03/0x04/0x05 下止点/上止点/下降/上升/中间/保持
+    tirePressureWarning:ubyte; //胎压故障告警 0 no error, >0 error
+    exhaustBrake:ubyte; //排气制动 11：正常开 01：短路
+    parkingBrake:ubyte; //停车制动 手制动电磁阀 0x01: open 0x00: close
+    loadingBrake:ubyte; //装载制动 0:解除 1:实施 FF:无效
+}
+
+table VehicleLightsStatus {
+    /* 0x01: enable 0x00: disable */
+    emergencyFlash:ubyte; //紧急双闪
+    left:ubyte;  //左转灯
+    right:ubyte; //右转灯
+    lowBeam:ubyte;    //近光灯
+    highBeam:ubyte;   //远光灯
+    rotateAlarm:ubyte; //旋转报警灯
+    airHorns:ubyte;          //气喇叭
+    frontFogLamp:ubyte;     //前雾灯
+    frontWorkLamp:ubyte;    //前工作灯
+    sideLamp:ubyte;     //侧照灯
+    positoinLamp:ubyte; //位置灯
+}
+
+//车端上报车辆反馈信息
+table ReportFeedbackData {
+    vehicleBodyData:VehicleBodysStatus;
+    vehicleLightsData:VehicleLightsStatus;
+}
+
+//车身上报HMI提示消息,通讯消息(上报驾驶舱)
+table ReportHmiHintMsg {
+    msg:[ubyte] (id:0);
+}
+
+//车道线标记
+table TrackLineConfigMsg {
+    //是否开启了后置摄像头镜像true/false
+    mirrorBackCameraFlag:ubyte;
+
+    //车轮最大转角-35~35度
+    wheelMaxAngle:float;
+
+    //方向盘最大转角-720 ~ 720度
+    steerMaxAngle:float;
+
+    //前摄像头垂直可视角度(度)
+    FovFrontCamera:float;
+    //后摄像头垂直可视角度(度)
+    FovBackCamera:float;
+
+    //前摄像头中心线同水平面的夹角(度)
+    inclinationAngleFrontCamera:float;
+    //后摄像头中心线同水平面的夹角(度)
+    inclinationAngleBackCamera:float;
+
+    //前摄像头距离地面距离
+    heightFrontCamera:float;
+    //后摄像头距离地面距离
+    heightBackCamera:float;
+
+    //屏幕分辨率横向方向
+    screenWidth:float;
+    //屏幕分辨率纵向方向
+    screenHeight:float;
+
+    //前摄像头相对于车头中心横向偏移(镜头视角，左负，右正)
+    offsetFrontCamera:float;
+    //后摄像头相对于车头中心横向偏移(镜头视角，左负，右正)
+    offsetBackCamera:float;
+
+    //车头摄像头到车前轮中心的距离
+    distanceFrontCamera2Axles:float;
+    //车尾摄像头到车后轮中心的距离
+    distanceBackCamera2Axles:float;
+
+    //车前后轮的轴距
+    distanceAxles:float;
+
+    //前车轮轴长
+    distanceFrontAxles:float;
+    //后车轮轴长
+    distanceBackAxles:float;
+}
+
+// 车辆运营状态上报
+table ReportRoadTaskInfo {
+    loadStatus:ubyte; // 0x01:空载　0x02:满载 0x03:半载
+    /*
+    0x00:无任务,即任务编号为0时
+    0x01:道路行驶
+    0x02:道路预告(开始和电铲或卸点交互) 根据loadStatus判断为装载还是卸载预告
+    0x03:排队等待
+    0x04:驶入停靠(获得了V2V驶入许可)
+    0x05:停靠完成
+    0x06:装载中
+    0x07:装载完成
+    0x08:卸载中
+    0x09:卸载完成
+    0x0c:举斗前行
+    0x0d:装载区驶入完成
+    0x0e:重新停靠
+    */
+    workStatus:ubyte;
+    // operType:ubyte; //0x07：重新停靠, 仅当workStatus为0x0d时，有效
+
+}
+
+//遥控驾驶模式下车端发送智能减速给舱端
+table SendSafeDecelerate {
+    action:ubyte; //1:start 0:end
+}
+
+//车身上报驾驶舱车速告警消息
+table ReportSpeedWarningMsg {
+    speedWarningValue:ubyte;
+    speedReductionValue:ubyte;
+    reverseSpeedWarningValue:ubyte;
+    reverseSpeedReductionValue:ubyte;
+}

@@ -1,0 +1,28 @@
+#摄像头垂直视角(度)
+cameraAlpha = 58.0
+#摄像头中心线同水平面的夹角(度)
+cameraBeta = 0.0
+#摄像头距离地面距离
+camera_groud = 0.78 
+
+#摄像头输出屏幕分辨率横向方向
+cameraX = 1920.0 
+#摄像头输出屏幕分辨率纵向方向
+cameraY = 1080.0
+
+#车头摄像头相对于车头中心横向偏移（镜头视角，左负，右正）
+vehicleC_front = 0.0
+#车尾摄像头相对于车尾中心横向偏移（镜头视角，左负，右正）
+vehicleC_back = 0.0
+#车头摄像头到车前轮中心的距离
+vehicleD_front = 0.5 
+#车尾摄像头到车后轮中心的距离
+vehicleD_back = 0.5 
+#车前后轮的轴距
+vehicleL = 2.8 
+#前车轮轴长
+vehicleW_front = 1.2 
+#后车轮轴长
+vehicleW_back = 1.2 
+
+

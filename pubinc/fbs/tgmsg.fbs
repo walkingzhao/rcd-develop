@@ -1,0 +1,59 @@
+include "common.fbs";
+include "rcd.fbs" ;
+include "vehicle.fbs";
+include "platform.fbs";
+
+namespace TGMsg;
+
+union MsgUnion {
+    Ping,                       //心跳.驾驶舱下发Ping,车端回复Pong,用于计算通讯延时.
+    Pong,                       //回复Ping.时间戳填充Ping中的时间戳.
+    Rcd.ControlData,            //驾驶舱下发控制命令到车端,同时上报云端
+    Rcd.Status,                 //驾驶舱状态,上报平台
+    Rcd.ReqControlCmd,          //驾驶舱下发接管命令
+    Rcd.ResponVehicleAuth,      //驾驶舱回复车端鉴权结果
+    Vehicle.ReportCan,          //车端上报CAN数据.上报驾驶舱+平台
+    Vehicle.ReportHmi,          //车端上报HMI消息.上报驾驶舱
+    Vehicle.ResponCtrlCmd,      //车端响应驾驶舱接管命令
+    Vehicle.ReqRcdAuth,         //车端向驾驶舱请求鉴权
+    Platform.DeviceLogin,               //驾驶舱登录
+    Platform.DeviceLoginResult,         //驾驶舱登录结果
+    Platform.DriverLogin,               //司机登录
+    Platform.DriverLoginResult,         //司机登录结果
+    Platform.DriverLogout,              //司机登出
+    Platform.DriverLogoutResult,        //司机登出结果
+    Platform.CabinTakeoverTaskApply,    //平台下发接管任务申请到驾驶舱
+    Platform.TruckTakeoverTask,         //平台下发接管任务到矿卡
+    Platform.CabinTakeoverTaskReply,    //接管任务应答
+    Platform.CabinTakeoverTargeChange,  //接管目的地变更
+    Platform.TakeoverTaskEnd,           //接管任务结束
+    Platform.TakeoverTaskCancel,        //接管任务取消指派
+    Platform.TakeoverTaskFail,          //驾驶舱上报接管失败
+    Platform.TakeoverTaskGiveUp,        //驾驶舱上报放弃接管
+    Platform.TruckIpReport,             //矿卡ip上报
+    Platform.TruckTaskStart,            //矿卡上报接管任务开始
+    Platform.TruckTaskEnd,              //矿卡上报接管任务结束
+    Platform.CabinTakeoverTaskRequest,  //驾驶舱申请接管任务
+    Vehicle.ReportGpsInfo,              //车端上报gps消息.上报驾驶舱
+    Vehicle.ReportFeedbackData,         //车端上报车辆反馈信息
+    Vehicle.ReportHmiHintMsg,           //车端转发HMI提示消息
+    Platform.DeviceCameraCtrlRequest,   //平台发起控制设备某个摄像头的控制请求
+    Platform.DeviceCameraCtrlResponse,  //设备对平台发起控制设备某个摄像头的控制请求响应
+    Platform.TruckOnlineInfo,           //平台下发在线车辆信息
+    Platform.FastStopRequest,           //驾驶舱向平台请求快速停车
+    Platform.FastStopResponse,          //平台下发快速停车结果
+    Rcd.ResponTaskStop,                 //驾驶仓回复车端停止任务，断开连接
+    Vehicle.TrackLineConfigMsg,         //车端车道线标记消息
+    Rcd.SendRemoteEstop,                //非遥控驾驶模式下驾驶舱发送紧急停车
+    Vehicle.ReportRoadTaskInfo,         //车端上报驾驶舱车辆运营状态
+    Vehicle.SendSafeDecelerate,         //遥控驾驶模式下车端发送智能减速给舱端
+    Vehicle.ReportSpeedWarningMsg       //车身上报驾驶舱车速告警消息
+}
+
+//消息包装,通讯消息(适用于驾驶舱,车端,平台)
+table MsgFrame {
+    timestamps:uint64 (id:0);    //毫秒级时间戳
+    msg:MsgUnion (id:2);         //union 类型有个隐藏的id,需要跳过.
+}
+
+root_type MsgFrame;

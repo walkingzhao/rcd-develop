@@ -1,0 +1,54 @@
+﻿#是否开启了后置摄像头镜像true/false
+mirrorBackCameraFlag = true
+
+#车轮最大转角-35~35度
+wheelMaxAngle = 35
+
+#方向盘最大转角-720 ~ 720度
+steerMaxAngle = 720
+
+#前摄像头垂直可视角度(度)
+FovFrontCamera = 86.25
+#后摄像头垂直可视角度(度)
+FovBackCamera = 86.25
+
+#前摄像头中心线同水平面的夹角(度)
+inclinationAngleFrontCamera = 30
+#后摄像头中心线同水平面的夹角(度)
+inclinationAngleBackCamera = 30
+
+#前摄像头距离地面距离
+heightFrontCamera = 3.8
+#后摄像头距离地面距离
+heightBackCamera = 1.42
+
+
+
+#屏幕分辨率横向方向
+screenWidth = 1920.0
+#屏幕分辨率纵向方向
+screenHeight = 1080.0
+
+
+#前摄像头相对于车头中心横向偏移（镜头视角，左负，右正）
+#offsetFrontCamera = -0.8
+offsetFrontCamera = 0
+#后摄像头相对于车头中心横向偏移（镜头视角，左负，右正）
+offsetBackCamera = 0
+
+#车头摄像头到车前轮中心的距离
+distanceFrontCamera2Axles = 1.2
+#车尾摄像头到车后轮中心的距离
+distanceBackCamera2Axles = 0.72
+
+#车前后轮的轴距
+distanceAxles = 5.325
+
+#前车轮轴长
+#distanceFrontAxles = 2.242 
+distanceFrontAxles = 3.02
+#后车轮轴长
+#distanceBackAxles = 2.252 
+distanceBackAxles = 3.02
+
+

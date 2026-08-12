@@ -1,0 +1,52 @@
+{
+	"Login":[{"name":""}],
+        "Logo":[{"path":"/home/tgzx/DCU-RTS001/DCU/resources/img/logo.png"}],
+       	"ScreenNum":[{"Left":"2", "Mid":"1","Right":"0"}],
+	"Video":[{"num":"7", "landscape":"1"}],
+	"Area":[{"YongShun":"1"}],
+	"Url":[{"MapUrl":"http://192.168.30.143:9999/screenMap"}],
+        "BatteryVoltage":[{"Start":"0", "Min":"24","Max":"30","End":"50"}],
+        "EngineCoolantTemperature":[{"Start":"-40", "Min":"-40","Max":"110","End":"210"}],
+        "EngineOilPressure":[{"Start":"0", "Min":"100","Max":"1000","End":"1000"}],
+        "FuelLevel":[{"Start":"0", "Min":"12.5","Max":"100","End":"100"}],
+        "fault":[{"V1":"72", "V2":"115","V3":"78","V4":"93","V5":"111","V6":"116"}],
+        "Vehicle":[
+            {
+                    "867868052889898":[{
+                            "Name":"DR100",
+			    "Type":"1",
+                            "img":"/home/tgzx/DCU-RTS001/DCU/resources/img/DR100.png",
+			    "Forward":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1",
+			    "ForwardLeft":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1",
+                            "ForwardRight":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1",
+                            "Backward":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1",
+                            "Left":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1",
+                            "Right":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1",
+                            "Drive":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1",
+			    "Sound":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1"
+                    }] ,
+                    "861156053381461":[{
+			    "Name":"离合_11",
+			    "Type":"1",
+			    "img":"/home/tgzx/DCU-RTS001/DCU/resources/img/离合_11.png",
+			    "Forward":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1",
+                            "ForwardLeft":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1",
+                            "ForwardRight":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1",
+                            "Backward":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1",
+                            "Left":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1",
+                            "Right":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1",
+                            "Drive":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1",
+                            "Sound":"pzsp://192.168.10.139:7788/live/ld/trans/tgzx/mlinkm/1111_0?ndselect=2&linkmode=8&us=1&rcvmd=2&only-video=1"
+		    }]
+	    }
+	 ],
+	 "CameraServer":[{	"artemisIp":"https://192.168.30.150:443",
+				"appKey":"26476177",
+				"appSecret":"FqmfU4WIMLQxU1bpvQLF"
+	 }]
+	
+}
+
+
+
+

@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainCameraWgt</class>
+ <widget class="QWidget" name="MainCameraWgt">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>768</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="cameraTitle" native="true">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>961</width>
+     <height>391</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="CVLayout" stretch="1,1,1">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="TGFrame" name="modelWgt" native="true">
+      <widget class="QWidget" name="widget" native="true">
+       <property name="geometry">
+        <rect>
+         <x>420</x>
+         <y>40</y>
+         <width>120</width>
+         <height>80</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="TGFrame" name="pingWgt" native="true"/>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="5" rowspan="2">
+       <widget class="SteerWheel" name="wheelWgt" native="true"/>
+      </item>
+      <item row="2" column="4" colspan="3">
+       <widget class="gearProWidget" name="gearWgt" native="true"/>
+      </item>
+      <item row="1" column="7" rowspan="2">
+       <widget class="TriangleFill" name="throttleWgt" native="true"/>
+      </item>
+      <item row="1" column="2" rowspan="2">
+       <widget class="TriangleFill" name="brakeWgt" native="true"/>
+      </item>
+      <item row="1" column="6">
+       <widget class="RingDial" name="tachometerWgt" native="true"/>
+      </item>
+      <item row="1" column="4">
+       <widget class="RingDial" name="speedWgt" native="true"/>
+      </item>
+      <item row="0" column="8" rowspan="3" colspan="2">
+       <widget class="QWidget" name="zero_2" native="true"/>
+      </item>
+      <item row="0" column="0" rowspan="2" colspan="2">
+       <widget class="TGFrame" name="midVideoFrame1" native="true">
+        <layout class="QHBoxLayout" name="minPLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>20</number>
+         </property>
+         <property name="topMargin">
+          <number>15</number>
+         </property>
+         <property name="rightMargin">
+          <number>20</number>
+         </property>
+         <property name="bottomMargin">
+          <number>15</number>
+         </property>
+         <item>
+          <widget class="QWidget" name="widget_back" native="true">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_5">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="OpenGLWidget" name="backPlayWgt" native="true">
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_3">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <property name="spacing">
+                <number>0</number>
+               </property>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="titleDateDriver" name="widget_date_dirver" native="true">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>440</y>
+     <width>131</width>
+     <height>81</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widget_front" native="true">
+   <property name="geometry">
+    <rect>
+     <x>780</x>
+     <y>410</y>
+     <width>201</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_4">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="OpenGLWidget" name="frontPlayWgt" native="true">
+      <layout class="QGridLayout" name="gridLayout_2">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>0</number>
+       </property>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="widget_msg" native="true">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>570</y>
+     <width>201</width>
+     <height>126</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget#widget_msg{
+ background-color:transparent;
+}</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_6">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout_msg"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="trackLineWgt" native="true">
+   <property name="geometry">
+    <rect>
+     <x>399</x>
+     <y>460</y>
+     <width>231</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_7">
+    <item row="0" column="0">
+     <widget class="trankLineW" name="widget_TrackLine" native="true"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="laneBoundaryWgt" native="true">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>550</y>
+     <width>231</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_8">
+    <item row="0" column="0">
+     <widget class="BoundaryLineWgt" name="widget_LaneBoundary" native="true">
+      <property name="styleSheet">
+       <string notr="true">border-image:url(:/resource/car/car.png)</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="TGFrame" name="cloudyStatueWgt" native="true">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>150</y>
+     <width>943</width>
+     <height>10</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_rcd_version">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>480</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="TGFrame" name="frontLeftVideoFrame" native="true">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>540</y>
+     <width>206</width>
+     <height>83</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="minPLayout_2">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>20</number>
+    </property>
+    <property name="topMargin">
+     <number>15</number>
+    </property>
+    <property name="rightMargin">
+     <number>20</number>
+    </property>
+    <property name="bottomMargin">
+     <number>15</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="widget_font_left" native="true">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_9">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="OpenGLWidget" name="front_leftPlayWgt" native="true">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_10">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <property name="spacing">
+           <number>0</number>
+          </property>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="TGFrame" name="front_rightVideoFrame" native="true">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>590</y>
+     <width>206</width>
+     <height>83</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="minPLayout_3">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>20</number>
+    </property>
+    <property name="topMargin">
+     <number>15</number>
+    </property>
+    <property name="rightMargin">
+     <number>20</number>
+    </property>
+    <property name="bottomMargin">
+     <number>15</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="widget_front_right" native="true">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_11">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="OpenGLWidget" name="front_rightPlayWgt" native="true">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_12">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <property name="spacing">
+           <number>0</number>
+          </property>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="TGFrame" name="netSpeedWgt" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>943</width>
+     <height>10</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TGFrame</class>
+   <extends>QWidget</extends>
+   <header>Component/TGFrame.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>trankLineW</class>
+   <extends>QWidget</extends>
+   <header>Component/trackline/trankLineW.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>OpenGLWidget</class>
+   <extends>QWidget</extends>
+   <header>Component/OpenglWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>RingDial</class>
+   <extends>QWidget</extends>
+   <header>Component/RingDial.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TriangleFill</class>
+   <extends>QWidget</extends>
+   <header>Component/TriangleFill.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SteerWheel</class>
+   <extends>QWidget</extends>
+   <header>Component/SteerWheel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>titleDateDriver</class>
+   <extends>QWidget</extends>
+   <header>Component/titleDateDriver.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>BoundaryLineWgt</class>
+   <extends>QWidget</extends>
+   <header>Component/boundary/BoundaryLineWgt.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>gearProWidget</class>
+   <extends>QWidget</extends>
+   <header>Component/gearProWidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

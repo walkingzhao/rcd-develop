@@ -1,0 +1,151 @@
+include "common.fbs";
+namespace Platform;
+
+//驾驶舱登录
+table DeviceLogin{
+    authCode:string;   //mac地址
+    cabinIp:string; //ip
+    version:string;//DCU版本号 06.80.09.XX.XX.XX
+}
+
+//驾驶舱登录结果
+table DeviceLoginResult{
+    result:CommonResult;
+    deviceName:string;
+    mapMd5:string;//文件MD5
+    serverUrl:string;//文件下载地址
+}
+
+//驾驶舱司机登录
+table DriverLogin{
+    cardSn:string;//设备关联卡号
+}
+
+//驾驶舱司机登录结果
+table DriverLoginResult{
+    result:CommonResult;
+    driverName:string;
+}
+
+//驾驶舱司机登出
+table DriverLogout{
+    cardSn:string;//设备关联卡号
+}
+
+//驾驶舱司机登出结果
+table DriverLogoutResult{
+    result:CommonResult;
+}
+
+//调度任务
+table DispatchTask {
+    taskId: ushort; //调度任务编号
+    targetName: string; //调度目标
+    fileUrl: string;  //路径文件下载地址
+    fileMd5: string;  //文件MD5
+}
+
+//平台下发接管任务申请到驾驶舱
+table CabinTakeoverTaskApply{
+    taskId:ushort; //接管任务编号
+    truckImei:string;  //矿卡imei
+    truckName:string; //矿卡名称
+    truckIp:string; //矿卡ip
+    secretKey:string;//密钥
+    takeoverPurpose:TakeoverPurpose; //接管目的
+    dispatchTask:DispatchTask;
+}
+
+//平台下发接管任务到矿卡
+table TruckTakeoverTask{
+    taskId:ushort; //接管任务编号
+    cabinIp:string; //驾驶舱ip
+    cabinName:string; //驾驶舱名称
+    secretKey:string;//密钥
+}
+
+//接管任务应答
+table CabinTakeoverTaskReply{
+    taskId:ushort; //接管任务编号
+    result:CommonResult;   //接管申请结果
+    refuseReason:string; //拒绝原因
+}
+
+//接管目的地变更
+table CabinTakeoverTargeChange{
+    dispatchTask:DispatchTask; //新的调度任务
+}
+
+//接管任务结束
+table TakeoverTaskEnd{
+    taskId:ushort; //接管任务编号
+    reason:TaskEndReason;   //结束接管原因
+}
+
+//接管任务取消指派
+table TakeoverTaskCancel{
+    taskId:ushort; //接管任务编号
+}
+
+//驾驶舱上报接管失败
+table TakeoverTaskFail{
+    taskId:ushort; //接管任务编号
+}
+
+//驾驶舱上报放弃接管
+table TakeoverTaskGiveUp{
+    taskId:ushort; //接管任务编号
+}
+
+//矿卡ip上报
+table TruckIpReport{
+    truckIp:string; //矿卡ip
+}
+
+//矿卡上报接管任务开始
+table TruckTaskStart{
+    taskId:ushort; //接管任务编号
+}
+
+//矿卡上报接管任务结束
+table TruckTaskEnd{
+    taskId:ushort; //接管任务编号
+    reason:TaskEndReason;   //结束接管原因
+}
+
+//驾驶舱申请接管任务
+table CabinTakeoverTaskRequest{
+    truckImei:string;  //矿卡imei
+    takeoverPurpose:TakeoverPurpose; //接管目的
+}
+
+//平台发起控制设备某个摄像头的控制请求
+table DeviceCameraCtrlRequest {
+    timestamps:uint64(id:0);    //毫秒级时间戳
+    action:uint32(id:1);		//是否推流,0:停止推流,1:推流
+    cameraId:string (id:2);		//摄像头的编号
+}
+
+//设备对平台发起控制设备某个摄像头的控制请求响应
+table DeviceCameraCtrlResponse {
+    timestamps:uint64(id:0);    //毫秒级时间戳,此字段等于发起的控制请求(DeviceCameraCtrlRequest)的timestamps字段值
+    action:uint32(id:1);		//是否推流,0:停止推流,1:推流,此字段等于发起的控制请求(DeviceCameraCtrlRequest)的action字段值
+    cameraId:string (id:2);		//摄像头的编号,此字段等于发起的控制请求(DeviceCameraCtrlRequest)的cameraId字段值
+    result:uint32(id:3);		//控制是否成功,0:失败,1:成功,2:在接管中
+}
+
+//平台下发所有在线车辆信息
+table TruckOnlineInfo {
+    imei:[string]; //所有在线车辆的imei
+}
+
+//驾驶舱向平台申请快速停车
+table FastStopRequest {
+    imei:string; //申请停车的imei
+}
+
+//平台应答快速停车结果
+table FastStopResponse {
+    imei:string; //申请停车的imei
+    result:CommonResult; //快速停车的结果
+}

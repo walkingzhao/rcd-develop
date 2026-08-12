@@ -1,0 +1,34 @@
+//心跳,通讯消息
+table Ping {
+    timestamps:uint64(id:0); //毫秒级时间戳
+}
+
+//心跳回复.通讯消息.时间戳填Ping中的timestamps,用于驾驶舱和车端计算通讯延时.
+table Pong{
+    timestamps:uint64(id:0); //毫秒级时间戳
+}
+
+enum CommonResult:ubyte {Fail = 0,Success = 1}
+
+//驾驶舱灯光控制
+enum LightAction:ubyte {TrunOff = 0,TrunOn=1}
+
+//驾驶舱接管命令
+enum RcdControlCmd:ubyte {Unknow = 0,Start = 1,Finish=2}
+
+//车端响应驾驶舱接管命令结果
+enum RcdControlCmdResult:ubyte {Unknow = 0,Accept = 2,Reject = 4}
+
+//接管目的 0：靠边停车，1：装卸停靠，2：绕障，3：指定停靠点, 4:主动接管, 5:尝试行驶, 6:监控行驶
+enum TakeoverPurpose:ubyte {
+    Pullover = 0,
+    Precisedocking = 1,
+    Detour = 2,
+    SpecifyTarget = 3,
+    AutonomousDriving = 4,
+    TryToDriving = 5,
+    MonitorDriving = 6
+}
+
+//接管任务结束原因 0：正常结束, 1：网络中断, 2：驾驶舱故障
+enum TaskEndReason:ubyte {Normal = 0,  NetworkInterrupt = 1, CockpitFault = 2}

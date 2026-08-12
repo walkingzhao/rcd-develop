@@ -1,0 +1,78 @@
+include "common.fbs";
+namespace Rcd;
+
+table CtrlRawData {
+    clutch : ushort;        //离合
+    brake : ushort;         //刹车
+    accelerator : ushort;   //油门
+    handbrake : ushort;     //手刹
+    steeringwheel : short; //方向盘
+}
+
+//车身控制命令,基础数据
+struct VehicleCtrlCmd {
+    steeringWheelAngle:float (id:1);    //方向盘角度百分比.有效值：0.00 -100.00;左打死时为:0;中位时为:50.00;右打死时为:100.00
+    throttlePedal:float  (id:2);          //油门踏板开度百分比.有效值：0.00 - 100.00;
+    brakePedal:float  (id:3);             //电制动踏板开度百分比.有效值：0.00 - 100.00
+    hydraulicBrake:float (id:4);         //机械制动踏板开度百分比.有效值：0.00 - 100.00
+    retarderCtrl:ubyte (id:5);              //缓速器控制
+    exhuastBrake:ubyte (id:6);              //气压制动控制.0:气压制动失效;1:气压制动使能
+    parkCtrl:ubyte (id:7);                  //停车制动控制.0:解除驻车;1:驻车  手刹
+    bucketCtrl:ubyte (id:8);                //货箱控制.0:保持 1:上升 2:下降
+    shiftCtrl:ubyte (id:9);                 //档位控制.2: D; 3: N; 4: R
+    eStop:bool (id:10);                     //急停控制.true:急停按下;false:急停复位
+    loadingCtrl:ubyte (id:11);              //装载制动控制.0:解除驻车;1:驻车 P档
+}
+
+//灯光控制命令,基础数据
+struct LightCtrlCmd {
+    left:LightAction (id:0);                //左转向
+    right:LightAction (id:1);               //右转向
+    lowBeam:LightAction (id:2);             //近光灯
+    heighBeam:LightAction (id:3);           //远光灯
+    rotatingWarningLight:LightAction (id:4);    //旋转警示灯
+    speaker:LightAction (id:5);             //气喇叭
+    frontFog:LightAction (id:6);            //前雾灯
+    frontStatus:LightAction (id:7);         //前工作灯
+    side:LightAction (id:8);                //侧照灯
+    rearPosition:LightAction (id:9);        //后位置灯
+    emergency:LightAction (id:10);          //紧急双闪
+    brake:LightAction (id:11);              //制动灯
+    back:LightAction (id:12);               //倒车灯
+    rearStatus:LightAction (id:13);         //后工作灯
+}
+
+//驾驶舱下发控制数据到车端,通讯消息(下发车端+上报平台)
+table ControlData {
+    vehicleCmd:VehicleCtrlCmd (id:0);
+    lightCmd:LightCtrlCmd (id:1);
+}
+
+//驾驶舱状态信息.通讯消息(上报平台)
+table Status {
+    task:ubyte (id:0);              //任务状态.
+    wheel:ubyte (id:1);             //方向盘等控制器状态
+    io:ubyte (id:2);                //IO控制器状态
+    vehicle:ubyte = 0 (id:3);       //车端状态.
+}
+
+//驾驶舱下发控制命令到车端,通讯消息(下发车端)
+table ReqControlCmd {
+    cmd:RcdControlCmd (id:0);          //接管命令.1-遥控开始,2-遥控结束
+}
+
+//驾驶舱回复车端鉴权结果
+table ResponVehicleAuth {
+    imei:string (id:0);                 //车端IMEI
+    result:CommonResult (id:1);         //鉴权结果
+}
+
+//驾驶仓回复车端停止任务，断开连接
+table ResponTaskStop {
+    taskId:ushort;
+}
+
+//非遥控驾驶模式下的紧急停车
+table SendRemoteEstop {
+    estop:ubyte;
+}

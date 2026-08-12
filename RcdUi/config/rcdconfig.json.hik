@@ -1,0 +1,44 @@
+{
+	 "Login":[{"name":""}],
+        "ScreenNum":[{"Left":"0", "Mid":"1","Right":"2"}],
+        "Url":[{"MapUrl":"http://192.168.30.170:9999/screenMap"}],
+        "Vehicle":[
+            {
+		    "861617051838026":[{
+			    "Name":"TEXT2",
+			    "Forward":"rtsp://admin:itage123@192.168.10.220:554/0",
+			    "Backward":"rtsp://admin:itage123@192.168.10.220:554/0",
+			    "Left":"rtsp://admin:itage123@192.168.10.231:554/0",
+			    "Right":"rtsp://admin:itage123@192.168.10.220:554/0",
+			    "Drive":"rtsp://admin:itage123@192.168.10.220:554/0",
+			    "AudioStream":"rtsp://admin:123456@192.168.10.210/live/stream0"			    "AudioStream":"rtsp://admin:123456@192.168.10.210/live/stream0"
+		    }],
+		    "864506032755200":[{
+			    "Name":"TEXT1",
+			    "Forward":"rtsp://admin:itage123@192.168.10.220:554/0",
+			    "Backward":"rtsp://admin:itage123@192.168.10.220:554/0",
+			    "Left":"rtsp://admin:itage123@192.168.10.231:554/0",
+			    "Right":"rtsp://admin:itage123@192.168.10.220:554/0",
+			    "Drive":"rtsp://admin:itage123@192.168.10.220:554/0",
+			    "AudioStream":"rtsp://admin:123456@192.168.10.210/live/stream0"
+		    }],
+		    "864506032755796":[{
+			    "Name":"V2.3_CT",
+			    "Forward":"rtsp://admin:itage123@192.168.20.220:554/0",
+			    "Backward":"rtsp://admin:123456@192.168.20.122/stream0",
+			    "Left":"rtsp://admin:123456@192.168.20.122/stream0",
+			    "Right":"rtsp://admin:123456@192.168.20.122/stream0",
+			    "Drive":"rtsp://admin:123456@192.168.20.122/stream0",
+			    "AudioStream":"rtsp://admin:123456@192.168.10.210/live/stream0"
+		    }]
+           }
+	 ],
+	 "CameraServer":[{	"artemisIp":"https://192.168.30.150:443",
+				"appKey":"26476177",
+				"appSecret":"FqmfU4WIMLQxU1bpvQLF"
+	 }]
+}
+
+
+
+
